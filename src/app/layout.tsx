@@ -2,9 +2,13 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://chrisvanriemsdijk.com"),
   title: "Chris van Riemsdijk",
   description:
     "Creative Technologist — Building at the intersection of design, technology, and experience.",
+  icons: {
+    icon: "/favicon.svg",
+  },
   openGraph: {
     title: "Chris van Riemsdijk",
     description:
