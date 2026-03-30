@@ -9,7 +9,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative flex min-h-svh flex-col items-center justify-center px-6"
+      className="relative flex min-h-svh flex-col items-center justify-center px-5 sm:px-6"
     >
       {/* Subtle radial glow */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -17,7 +17,7 @@ export default function Hero() {
       </div>
 
       <motion.div
-        className="relative z-10 flex flex-col items-center gap-8 md:flex-row md:gap-16"
+        className="relative z-10 flex w-full max-w-3xl flex-col items-center gap-6 md:flex-row md:gap-16"
         variants={staggerContainer}
         initial="hidden"
         animate="visible"
@@ -25,7 +25,7 @@ export default function Hero() {
         {/* Circular headshot */}
         <motion.div
           variants={fadeUp}
-          className="relative h-40 w-40 shrink-0 overflow-hidden rounded-full shadow-[var(--shadow-lg)] md:h-52 md:w-52"
+          className="relative h-32 w-32 shrink-0 overflow-hidden rounded-full shadow-[var(--shadow-lg)] sm:h-40 sm:w-40 md:h-52 md:w-52"
         >
           <Image
             src="/photos/headshot.jpeg"
@@ -47,7 +47,7 @@ export default function Hero() {
           </motion.p>
           <motion.h1
             variants={fadeUp}
-            className="mb-6 text-[clamp(2.5rem,8vw,6rem)] font-semibold leading-[1.05] tracking-[-0.03em] text-[var(--text-primary)]"
+            className="mb-4 text-[clamp(2rem,7vw,5rem)] font-semibold leading-[1.05] tracking-[-0.03em] text-[var(--text-primary)] sm:mb-6"
           >
             {siteConfig.name}
           </motion.h1>

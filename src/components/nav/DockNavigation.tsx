@@ -53,9 +53,9 @@ export default function DockNavigation() {
 
   return (
     <motion.nav
-      className={`fixed top-6 left-1/2 z-50 -translate-x-1/2 transition-all duration-300 ${
+      className={`fixed top-4 left-1/2 z-50 -translate-x-1/2 transition-all duration-300 sm:top-6 ${
         scrolled ? "glass shadow-[var(--shadow-md)]" : "bg-transparent"
-      } rounded-full px-2 py-2`}
+      } max-w-[calc(100vw-2rem)] rounded-full px-1.5 py-1.5 sm:px-2 sm:py-2`}
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
@@ -65,7 +65,7 @@ export default function DockNavigation() {
           <button
             key={id}
             onClick={() => scrollTo(id)}
-            className="relative rounded-full px-4 py-2 text-xs font-medium transition-colors duration-200"
+            className="relative rounded-full px-3 py-1.5 text-[11px] font-medium transition-colors duration-200 sm:px-4 sm:py-2 sm:text-xs"
           >
             {activeSection === id && (
               <motion.div

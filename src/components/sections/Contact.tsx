@@ -21,7 +21,7 @@ export default function Contact() {
   );
 
   return (
-    <section id="contact" className="px-6 py-32">
+    <section id="contact" className="px-5 py-20 sm:px-6 md:py-32">
       <div className="mx-auto max-w-5xl text-center">
         <ScrollReveal>
           <p className="mb-6 text-xs font-medium tracking-[0.08em] uppercase text-[var(--text-tertiary)]">
@@ -30,7 +30,7 @@ export default function Contact() {
         </ScrollReveal>
 
         <ScrollReveal delay={0.1}>
-          <h2 className="mb-8 text-3xl font-semibold tracking-[-0.02em] text-[var(--text-primary)] md:text-5xl">
+          <h2 className="mb-6 text-2xl font-semibold tracking-[-0.02em] text-[var(--text-primary)] sm:mb-8 sm:text-3xl md:text-5xl">
             Let&apos;s connect.
           </h2>
         </ScrollReveal>

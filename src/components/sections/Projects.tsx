@@ -135,7 +135,7 @@ export default function Projects() {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(0);
 
   return (
-    <section id="work" className="bg-[var(--bg-secondary)] px-6 py-32">
+    <section id="work" className="bg-[var(--bg-secondary)] px-5 py-20 sm:px-6 md:py-32">
       <div className="mx-auto max-w-3xl">
         <ScrollReveal>
           <p className="mb-12 text-xs font-medium tracking-[0.08em] uppercase text-[var(--text-tertiary)]">
