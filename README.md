@@ -4,7 +4,7 @@ AI Consultant at [DataNorth AI](https://datanorth.ai) · MSc Data Science & Syst
 
 ## What I do
 
-I turn state-of-the-art AI into practical solutions. At DataNorth AI (born from [Klippa](https://klippa.com)), I help organizations implement Machine Learning, Computer Vision, NLP, and Generative AI. Before that, I built web and mobile apps at beeproger.
+I turn state-of-the-art AI into practical solutions. At DataNorth AI, I help organizations implement Machine Learning, Computer Vision, NLP, and Generative AI. Before that, I built web and mobile apps at beeproger.
 
 ## Research
 
