@@ -6,9 +6,6 @@ export const metadata: Metadata = {
   title: "Chris van Riemsdijk — AI Consultant",
   description:
     "Making AI clear, useful, and human. I help individuals and organizations turn AI into practical progress.",
-  icons: {
-    icon: "/favicon.svg",
-  },
   openGraph: {
     title: "Chris van Riemsdijk — AI Consultant",
     description:
