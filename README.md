@@ -1,36 +1,32 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Hey, I'm Chris 👋
 
-## Getting Started
+AI Consultant at [DataNorth AI](https://datanorth.ai) · MSc Data Science & Systems Complexity @ University of Groningen · Based in Groningen, Netherlands 🇳🇱
 
-First, run the development server:
+## What I do
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+I turn state-of-the-art AI into practical solutions. At DataNorth AI (born from [Klippa](https://klippa.com)), I help organizations implement Machine Learning, Computer Vision, NLP, and Generative AI. Before that, I built web and mobile apps at beeproger.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Research
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+My academic work focuses on **Graph Neural Networks for water infrastructure**:
+- 🎓 **MSc Thesis** — *Leak Detection in Water Distribution Networks Using GNN-Based Pressure Estimation* (2025)
+- 🔬 **DeepFlow** — *A deep learning pipeline for leakage detection in water distribution networks* (2023)
+- 📄 **BSc Thesis** — *Surrogate model development for short term load forecasting* (2022)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Speaking
 
-## Learn More
+- 🎤 [aiGrunn](https://aigrunn.org) — *Going beyond tabular data with graphs*
+- ⚖️ [Iuris Legal Congress](https://www.iurislegal.nl) — *Generative AI in Practice: tools, tips & applications*
 
-To learn more about Next.js, take a look at the following resources:
+## Tech I work with
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+`Python` `PyTorch` `Graph Neural Networks` `Deep Learning` `NLP` `Computer Vision` `LLMs` `OCR` `SLURM/HPC` `Generative AI`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Beyond code
 
-## Deploy on Vercel
+⚽️ Play football · 🚴 Road cycling enthusiast · 🏌🏼‍♂️ Golfer 
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Let's connect
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?logo=linkedin&logoColor=white)](https://linkedin.com/in/chrisvanriemsdijk)
+[![Website](https://img.shields.io/badge/Website-chrisvanriemsdijk.com-blue)](https://chrisvanriemsdijk.com)
