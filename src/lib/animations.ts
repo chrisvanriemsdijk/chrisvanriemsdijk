@@ -1,6 +1,6 @@
 import type { Variants } from "framer-motion";
 
-const appleEase: [number, number, number, number] = [0.25, 0.46, 0.45, 0.94];
+export const appleEase: [number, number, number, number] = [0.25, 0.46, 0.45, 0.94];
 
 const baseTransition = {
   duration: 0.6,
@@ -10,16 +10,6 @@ const baseTransition = {
 export const fadeUp: Variants = {
   hidden: { opacity: 0, y: 30 },
   visible: { opacity: 1, y: 0, transition: baseTransition },
-};
-
-export const fadeIn: Variants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: baseTransition },
-};
-
-export const scaleIn: Variants = {
-  hidden: { opacity: 0, scale: 0.95 },
-  visible: { opacity: 1, scale: 1, transition: baseTransition },
 };
 
 export const staggerContainer: Variants = {
@@ -33,11 +23,7 @@ export const staggerContainer: Variants = {
   },
 };
 
-export const slideInFromBottom: Variants = {
-  hidden: { opacity: 0, y: 60 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: appleEase },
-  },
+export const hoverLift = {
+  whileHover: { y: -2, boxShadow: "0 6px 30px rgba(0,0,0,0.1)" },
+  transition: { duration: 0.25, ease: appleEase },
 };

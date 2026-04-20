@@ -4,6 +4,9 @@ import { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import ScrollReveal from "@/components/ui/ScrollReveal";
+import SectionContainer from "@/components/ui/SectionContainer";
+import SectionLabel from "@/components/ui/SectionLabel";
+import { hoverLift, appleEase } from "@/lib/animations";
 import { experience, calcDuration, type Experience } from "@/lib/constants";
 
 function ExperienceCard({
@@ -20,8 +23,7 @@ function ExperienceCard({
   return (
     <motion.div
       className="glass cursor-pointer overflow-hidden"
-      whileHover={{ y: -2, boxShadow: "0 6px 30px rgba(0,0,0,0.1)" }}
-      transition={{ duration: 0.25, ease: [0.25, 0.46, 0.45, 0.94] }}
+      {...hoverLift}
       onClick={onToggle}
     >
       <div className="flex items-start gap-4 p-5">
@@ -95,7 +97,7 @@ function ExperienceCard({
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+            transition={{ duration: 0.3, ease: appleEase }}
             className="overflow-hidden"
           >
             <div className="border-t border-black/[0.06] px-5 pb-5 pt-4">
@@ -135,28 +137,22 @@ export default function Projects() {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(0);
 
   return (
-    <section id="work" className="bg-[var(--bg-secondary)] px-5 py-20 sm:px-6 md:py-32">
-      <div className="mx-auto max-w-3xl">
-        <ScrollReveal>
-          <p className="mb-12 text-xs font-medium tracking-[0.08em] uppercase text-[var(--text-tertiary)]">
-            Experience
-          </p>
-        </ScrollReveal>
+    <SectionContainer id="work" maxWidth="max-w-3xl" className="bg-[var(--bg-secondary)]">
+      <SectionLabel>Experience</SectionLabel>
 
-        <div className="flex flex-col gap-4">
-          {experience.map((exp, i) => (
-            <ScrollReveal key={exp.company + exp.role} delay={i * 0.1}>
-              <ExperienceCard
-                exp={exp}
-                isExpanded={expandedIndex === i}
-                onToggle={() =>
-                  setExpandedIndex(expandedIndex === i ? null : i)
-                }
-              />
-            </ScrollReveal>
-          ))}
-        </div>
+      <div className="flex flex-col gap-4">
+        {experience.map((exp, i) => (
+          <ScrollReveal key={exp.company + exp.role} delay={i * 0.1}>
+            <ExperienceCard
+              exp={exp}
+              isExpanded={expandedIndex === i}
+              onToggle={() =>
+                setExpandedIndex(expandedIndex === i ? null : i)
+              }
+            />
+          </ScrollReveal>
+        ))}
       </div>
-    </section>
+    </SectionContainer>
   );
 }
