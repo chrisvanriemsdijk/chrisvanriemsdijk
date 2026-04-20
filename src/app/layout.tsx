@@ -3,11 +3,11 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://chrisvanriemsdijk.com"),
-  title: "Chris van Riemsdijk — AI Consultant",
+  title: "Chris van Riemsdijk - AI Consultant",
   description:
     "Making AI clear, useful, and human. I help individuals and organizations turn AI into practical progress.",
   openGraph: {
-    title: "Chris van Riemsdijk — AI Consultant",
+    title: "Chris van Riemsdijk - AI Consultant",
     description:
       "Making AI clear, useful, and human. I help individuals and organizations turn AI into practical progress.",
     images: ["/photos/headshot.jpeg"],
