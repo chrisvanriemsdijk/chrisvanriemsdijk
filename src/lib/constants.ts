@@ -1,5 +1,8 @@
 export const siteConfig = {
   name: "Chris van Riemsdijk",
+  url: "https://chrisvanriemsdijk.com",
+  jobTitle: "AI Consultant",
+  location: "Groningen, Netherlands",
   role: "Making AI clear, useful, and human ",
   tagline:
     "I help individuals and organizations turn AI into practical progress.",
@@ -11,7 +14,7 @@ export const siteConfig = {
 };
 
 export const aboutText = [
-  "I'm an AI Consultant at DataNorth AI, where I help organizations turn AI from a buzzword into real impact. Whether that's shaping strategy, guiding investment decisions, or building hands-on solutions with Computer Vision, NLP, and LLMs.",
+  "I'm Chris van Riemsdijk, an AI Consultant at DataNorth AI based in the Netherlands, where I help organizations turn AI from a buzzword into real impact. Whether that's shaping strategy, guiding investment decisions, or building hands-on solutions with Computer Vision, NLP, and LLMs.",
   "Before consulting, I worked as an AI Engineer at Klippa on identity verification and fraud detection, and studied Data Science & Systems Complexity at the University of Groningen, where my research applied Graph Neural Networks to infrastructure problems.",
   "My personal mission is to educate more people on AI. I've given 100+ workshops across the Netherlands, Europe, and the US, from boardrooms to student classrooms, because I believe AI literacy shouldn't be reserved for engineers. The more people understand AI, the better we can shape its future together.",
 ];

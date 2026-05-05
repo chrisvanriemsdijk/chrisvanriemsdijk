@@ -15,7 +15,8 @@ export default function About() {
         <div className="md:col-span-3">
           <ScrollReveal>
             <h2 className="mb-6 text-2xl font-semibold leading-snug tracking-[-0.02em] text-[var(--text-primary)] sm:mb-8 sm:text-3xl md:text-4xl">
-              On a mission to make AI<br />
+              On a mission to make AI
+              <br />
               accessible to all.
             </h2>
           </ScrollReveal>
