@@ -1,6 +1,19 @@
 import type { Metadata } from "next";
+import { Archivo, IBM_Plex_Mono } from "next/font/google";
 import { siteConfig, aboutText } from "@/lib/constants";
 import "./globals.css";
+
+const archivo = Archivo({
+  subsets: ["latin"],
+  variable: "--font-archivo",
+  axes: ["wdth"],
+});
+
+const plexMono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-plex-mono",
+});
 
 const title = `${siteConfig.name} — AI Consultant & Speaker`;
 const description = `${siteConfig.name} is an AI Consultant at DataNorth AI based in ${siteConfig.location}. Strategy, workshops, and hands-on solutions in Computer Vision, NLP, and LLMs.`;
@@ -91,8 +104,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full antialiased">
-      <body className="noise-overlay min-h-full bg-[var(--bg-primary)] text-[var(--text-primary)]">
+    <html
+      lang="en"
+      className={`h-full antialiased ${archivo.variable} ${plexMono.variable}`}
+    >
+      <body className="noise-overlay min-h-full bg-[var(--paper)] text-[var(--ink)]">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}

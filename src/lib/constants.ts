@@ -1,57 +1,93 @@
 export const siteConfig = {
   name: "Chris van Riemsdijk",
+  firstName: "Chris",
   url: "https://chrisvanriemsdijk.com",
-  jobTitle: "AI Consultant",
+  jobTitle: "AI Consultant & Speaker",
   location: "Groningen, Netherlands",
-  role: "Making AI clear, useful, and human ",
+  role: "Making AI clear, useful, and human",
   tagline:
     "I help individuals and organizations turn AI into practical progress.",
   email: "chris@datanorth.ai",
+  creatingSince: "2022",
   social: {
     github: "https://github.com/chrisvanriemsdijk",
     linkedin: "https://linkedin.com/in/chrisvanriemsdijk",
   },
 };
 
-export const aboutText = [
-  "I'm Chris van Riemsdijk, an AI Consultant at DataNorth AI based in the Netherlands, where I help organizations turn AI from a buzzword into real impact. Whether that's shaping strategy, guiding investment decisions, or building hands-on solutions with Computer Vision, NLP, and LLMs.",
-  "Before consulting, I worked as an AI Engineer at Klippa on identity verification and fraud detection, and studied Data Science & Systems Complexity at the University of Groningen, where my research applied Graph Neural Networks to infrastructure problems.",
-  "My personal mission is to educate more people on AI. I've given 100+ workshops across the Netherlands, Europe, and the US, from boardrooms to student classrooms, because I believe AI literacy shouldn't be reserved for engineers. The more people understand AI, the better we can shape its future together.",
+export const introText = [
+  "I'm Chris, an AI Consultant at DataNorth AI based in Groningen. I help organizations turn AI from a buzzword into working systems — shaping strategy and building hands-on solutions with LLMs, Computer Vision, and NLP.",
+  "Before consulting, I was an AI Engineer at Klippa working on identity verification and fraud detection, and I studied Data Science & Systems Complexity at the University of Groningen, where my research applied Graph Neural Networks to real-world infrastructure problems.",
 ];
 
-const monthNames = [
-  "Jan", "Feb", "Mar", "Apr", "May", "Jun",
-  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",
+// Scroll-fill statement — one sentence, revealed word by word.
+export const statement =
+  "From boardrooms to classrooms, I believe AI literacy shouldn't be reserved for engineers — the more people understand AI, the better we shape its future together.";
+
+export interface Stat {
+  value: string;
+  label: string;
+}
+
+export const stats: Stat[] = [
+  { value: "200+", label: "Workshops given across NL, Europe & the US" },
+  { value: "83%", label: "Of workshop participants saved 11–50% of their time" },
+  { value: "100%", label: "Saw immediate quality improvement in their work" },
+  { value: "4.2/5", label: "Applicability score from workshop participants" },
 ];
 
-function parseDate(dateStr: string): Date {
-  const [mon, year] = dateStr.split(" ");
-  return new Date(parseInt(year), monthNames.indexOf(mon));
+export interface Service {
+  title: string;
+  tags: string[];
 }
 
-export function calcDuration(startDate: string, endDate: string | null): string {
-  const start = parseDate(startDate);
-  const end = endDate ? parseDate(endDate) : new Date();
-  let months = (end.getFullYear() - start.getFullYear()) * 12 + (end.getMonth() - start.getMonth());
-  if (months < 0) months = 0;
-  const yr = Math.floor(months / 12);
-  const mo = months % 12;
-  const parts: string[] = [];
-  if (yr > 0) parts.push(`${yr} yr${yr > 1 ? "s" : ""}`);
-  if (mo > 0) parts.push(`${mo} mo`);
-  return parts.join(" ") || "< 1 mo";
+export const services: Service[] = [
+  {
+    title: "AI Strategy & Advisory",
+    tags: ["Assessments", "Roadmaps"],
+  },
+  {
+    title: "Workshops & Training",
+    tags: ["ChatGPT", "AI agents", "Beginner to advanced"],
+  },
+  {
+    title: "Custom AI Solutions",
+    tags: ["LLMs", "Computer Vision", "NLP"],
+  },
+  {
+    title: "Keynotes & Speaking",
+    tags: ["Conferences", "Webinars", "In-company sessions"],
+  },
+];
+
+export interface Principle {
+  title: string;
+  body: string;
 }
+
+export const principles: Principle[] = [
+  {
+    title: "AI literacy is for everyone",
+    body: "Understanding AI shouldn't require an engineering degree. I explain models the way I'd want them explained to me: plainly, honestly, and without the mystique.",
+  },
+  {
+    title: "Humans first, models second",
+    body: "The best AI systems amplify people instead of replacing judgment. I start from how people actually work, then find where AI genuinely helps.",
+  },
+  {
+    title: "Pragmatism over hype",
+    body: "Not every problem needs an LLM. I'd rather ship a simple system that works than an impressive demo that doesn't survive contact with reality.",
+  },
+];
 
 export interface Experience {
   company: string;
   logo: string;
   url: string;
   role: string;
-  startDate: string;
-  endDate: string | null;
+  period: string;
   description: string;
   bullets: string[];
-  skills: string[];
 }
 
 export const experience: Experience[] = [
@@ -60,35 +96,80 @@ export const experience: Experience[] = [
     logo: "/logos/datanorth.png",
     url: "https://datanorth.ai",
     role: "AI Consultant",
-    startDate: "Aug 2023",
-    endDate: null,
-
+    period: "2023 — Present",
     description:
-      "Supporting corporates and SMEs with their AI challenges: from shaping strategies and guiding investment decisions to creating value through practical implementations.",
+      "Supporting corporates and SMEs with their AI challenges: from shaping strategy to creating value through practical implementations.",
     bullets: [
-      "Helping companies unlock efficiency with AI, cutting dozens of FTEs through smart automation",
+      "Leading iterative AI training programs for corporate teams, from first demo to daily use",
       "Applying Computer Vision, NLP, and LLMs to solve real business problems",
-      "Partnering with organizations worldwide to design and execute AI strategies",
-      "Sharing knowledge through 100+ workshops, from beginner to advanced",
+      "Partnering with organizations worldwide on AI strategy and execution",
     ],
-    skills: ["Python", "Deep Learning", "Machine Learning", "NLP"],
   },
   {
     company: "Klippa",
-    logo: "/logos/klippa.ico",
+    logo: "/logos/klippa.png",
     url: "https://klippa.com",
     role: "AI Engineer",
-    startDate: "Jul 2022",
-    endDate: "Sep 2023",
-
+    period: "2022 — 2023",
     description:
-      "Building and improving AI models for identity verification and document processing at scale.",
+      "Built and improved AI models for identity verification and document processing at scale.",
     bullets: [
-      "Improved KYC models for automated identity document verification and fraud detection",
       "Owned the liveness detection model for the Identity Verification product",
-      "Developed and optimized fraud detection models to flag forged and tampered documents",
-      "Worked across Computer Vision and deep learning pipelines in a production environment",
+      "Improved KYC models for automated document verification and fraud detection",
+      "Shipped Computer Vision and deep learning pipelines in production",
     ],
-    skills: ["Python", "Deep Learning", "Computer Vision", "OCR"],
+  },
+  {
+    company: "University of Groningen",
+    logo: "",
+    url: "https://www.rug.nl",
+    role: "MSc Data Science & Systems Complexity",
+    period: "Graduated 2025",
+    description:
+      "Research on Graph Neural Networks for critical infrastructure: leak detection in water networks through GNN-based pressure estimation.",
+    bullets: [],
   },
 ];
+
+export interface Talk {
+  title: string;
+  venue: string;
+  kind: string;
+  url?: string;
+}
+
+export const talks: Talk[] = [
+  {
+    title: "Going beyond tabular data with graphs",
+    venue: "aiGrunn",
+    kind: "Conference talk",
+    url: "https://www.youtube.com/watch?v=NY7Xe8PFpL4",
+  },
+  {
+    title: "AI in Finance and Control",
+    venue: "Grip Connect · REEF",
+    kind: "Speaker",
+    url: "https://www.reef.nl/events/grip-connect-ai-in-finance-and-control/",
+  },
+  {
+    title: "Generatieve AI in de praktijk",
+    venue: "Iuris Legal Congress",
+    kind: "Workshop",
+    url: "https://www.iurislegal.nl/docenten/chris-van-riemsdijk/",
+  },
+  {
+    title: "Building AI agents",
+    venue: "SmartR Summercourse",
+    kind: "Workshop",
+    url: "https://smartr.nl/nieuws/onze-jaarlijkse-summercourse/",
+  },
+  {
+    title: "Aan de slag met AI",
+    venue: "Ruby, Winschoten",
+    kind: "Workshop",
+    url: "https://rubycampus.nl/nieuws/workshop-aan-de-slag-met-ai",
+  },
+];
+
+// Kept for structured data in layout.tsx
+export const aboutText = introText;

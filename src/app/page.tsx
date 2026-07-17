@@ -1,18 +1,26 @@
-import Hero from "@/components/sections/Hero";
-import About from "@/components/sections/About";
-import Projects from "@/components/sections/Projects";
-import Contact from "@/components/sections/Contact";
-import DockNavigation from "@/components/nav/DockNavigation";
+import CommandPalette from "@/components/nav/CommandPalette";
+import HeroIntro from "@/components/sections/HeroIntro";
+import Statement from "@/components/sections/Statement";
+import Impact from "@/components/sections/Impact";
+import Services from "@/components/sections/Services";
+import Principles from "@/components/sections/Principles";
+import Journey from "@/components/sections/Journey";
+import Talks from "@/components/sections/Talks";
+import Footer from "@/components/sections/Footer";
 
 export default function Home() {
   return (
     <>
-      <DockNavigation />
+      <CommandPalette />
       <main>
-        <Hero />
-        <About />
-        <Projects />
-        <Contact />
+        <HeroIntro />
+        <Statement />
+        <Impact />
+        <Services />
+        <Principles />
+        <Journey />
+        <Talks />
+        <Footer />
       </main>
     </>
   );
