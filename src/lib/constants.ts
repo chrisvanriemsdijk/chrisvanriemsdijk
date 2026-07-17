@@ -121,7 +121,7 @@ export const experience: Experience[] = [
   },
   {
     company: "University of Groningen",
-    logo: "",
+    logo: "/logos/rug.png",
     url: "https://www.rug.nl",
     role: "MSc Data Science & Systems Complexity",
     period: "Graduated 2025",
