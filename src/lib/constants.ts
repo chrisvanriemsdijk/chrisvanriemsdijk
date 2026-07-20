@@ -7,7 +7,9 @@ export const siteConfig = {
   role: "Making AI clear, useful, and human",
   tagline:
     "I help individuals and organizations turn AI into practical progress.",
-  email: "chris@datanorth.ai",
+  // The email address deliberately does not live here — see lib/email.ts.
+  // Anything in this file can end up in the static HTML, the JSON-LD, or
+  // llms.txt, which is where address harvesters look.
   creatingSince: "2022",
   social: {
     github: "https://github.com/chrisvanriemsdijk",

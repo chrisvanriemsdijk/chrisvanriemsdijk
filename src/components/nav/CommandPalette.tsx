@@ -10,6 +10,7 @@ import {
 } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { siteConfig } from "@/lib/constants";
+import { copyEmail, emailDisplay, openMail } from "@/lib/email";
 import {
   ArrowUpRightIcon,
   BriefcaseIcon,
@@ -103,9 +104,7 @@ export default function CommandPalette() {
   const sendMessage = useCallback(() => {
     const body = message.trim();
     if (!body) return;
-    window.location.href = `mailto:${siteConfig.email}?subject=${encodeURIComponent(
-      "Hey Chris"
-    )}&body=${encodeURIComponent(body)}`;
+    openMail("Hey Chris", body);
     setMessage("");
     close();
   }, [message, close]);
@@ -158,7 +157,10 @@ export default function CommandPalette() {
             label: "Send an email",
             icon: icons.mail,
             external: true,
-            run: openUrl(`mailto:${siteConfig.email}`),
+            run: () => {
+              close();
+              openMail();
+            },
           },
         ],
       },
@@ -170,7 +172,7 @@ export default function CommandPalette() {
             label: copied ? "Email copied" : "Copy email address",
             icon: copied ? icons.check : icons.copy,
             run: () => {
-              navigator.clipboard?.writeText(siteConfig.email);
+              void copyEmail();
               setCopied(true);
               setTimeout(() => {
                 setCopied(false);
@@ -219,9 +221,13 @@ export default function CommandPalette() {
   // Focus the right field + lock scroll while open
   useEffect(() => {
     if (open) {
+      // Only steal focus where there's a real keyboard. On touch, autofocus
+      // throws up the on-screen keyboard and buries the results the user came
+      // to look at — they can tap the field themselves if they want to type.
+      const hasKeyboard = window.matchMedia("(pointer: fine)").matches;
       if (view === "message") {
         textareaRef.current?.focus();
-      } else {
+      } else if (hasKeyboard) {
         inputRef.current?.focus();
       }
       document.body.style.overflow = "hidden";
@@ -258,12 +264,13 @@ export default function CommandPalette() {
         initial={{ y: 60, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: EASE, delay: 0.4 }}
-        className="fixed bottom-5 left-1/2 z-50 flex -translate-x-1/2 items-center gap-3 rounded-full bg-[var(--panel)] py-2.5 pl-4 pr-2.5 text-[var(--faint-on-panel)] shadow-[0_10px_40px_rgba(19,18,16,0.3)] transition-colors hover:text-[var(--paper-on-panel)] focus-visible:outline-none"
+        className="safe-bottom fixed left-1/2 z-50 flex min-h-12 -translate-x-1/2 items-center gap-3 rounded-full bg-[var(--panel)] py-2.5 pl-5 pr-5 text-[var(--faint-on-panel)] shadow-[0_10px_40px_rgba(19,18,16,0.3)] transition-colors hover:text-[var(--paper-on-panel)] focus-visible:outline-none sm:bottom-5 sm:pr-2.5"
         aria-label="Open command palette"
       >
         {icons.search}
         <span className="text-sm">Search</span>
-        <span className="mono-label rounded-lg bg-white/10 px-2 py-1 !text-[0.62rem] text-[var(--faint-on-panel)]">
+        {/* The shortcut hint is noise on a device with no ⌘ key */}
+        <span className="mono-label hidden rounded-lg bg-white/10 px-2 py-1 !text-[0.62rem] text-[var(--faint-on-panel)] sm:inline">
           ⌘K
         </span>
       </motion.button>
@@ -275,7 +282,7 @@ export default function CommandPalette() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-[60] flex items-end justify-center bg-[rgba(19,18,16,0.45)] p-4 backdrop-blur-sm sm:p-6"
+            className="fixed inset-0 z-[60] flex items-end justify-center bg-[rgba(19,18,16,0.45)] p-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] backdrop-blur-sm sm:p-6"
             onMouseDown={(e) => {
               if (e.target === e.currentTarget) close();
             }}
@@ -468,27 +475,30 @@ export default function CommandPalette() {
 
                 {/* Direct channels */}
                 <div className="grid grid-cols-2 gap-2 pt-2">
-                  <a
-                    href={`mailto:${siteConfig.email}`}
-                    onClick={close}
-                    className="flex flex-col items-center gap-2 rounded-2xl border border-white/10 px-4 py-6 text-center transition-colors hover:border-white/25"
+                  <button
+                    type="button"
+                    onClick={() => {
+                      openMail();
+                      close();
+                    }}
+                    className="flex flex-col items-center gap-2 rounded-2xl border border-white/10 px-4 py-5 text-center transition-colors hover:border-white/25 sm:py-6"
                   >
                     <span className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15">
                       {icons.mail}
                     </span>
                     <span className="text-sm font-semibold">Email me</span>
                     <span className="mono-label !text-[0.62rem] text-[var(--faint-on-panel)]">
-                      {siteConfig.email}
+                      {emailDisplay}
                     </span>
-                  </a>
+                  </button>
                   <button
                     type="button"
                     onClick={() => {
-                      navigator.clipboard?.writeText(siteConfig.email);
+                      void copyEmail();
                       setCopied(true);
                       setTimeout(() => setCopied(false), 1200);
                     }}
-                    className="flex flex-col items-center gap-2 rounded-2xl border border-white/10 px-4 py-6 text-center transition-colors hover:border-white/25"
+                    className="flex flex-col items-center gap-2 rounded-2xl border border-white/10 px-4 py-5 text-center transition-colors hover:border-white/25 sm:py-6"
                   >
                     <span className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15">
                       {copied ? icons.check : icons.copy}

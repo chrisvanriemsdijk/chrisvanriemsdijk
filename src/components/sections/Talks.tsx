@@ -6,13 +6,13 @@ import { talks } from "@/lib/constants";
 
 function TalkRow({ talk }: { talk: (typeof talks)[number] }) {
   const inner = (
-    <div className="group flex flex-col gap-2 border-t border-[var(--hairline)] py-7 sm:flex-row sm:items-baseline sm:justify-between md:py-8">
+    <div className="group flex flex-col gap-1.5 border-t border-[var(--hairline)] py-5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4 sm:py-7 md:py-8">
       <div className="flex items-baseline gap-3">
-        <h3 className="text-xl font-semibold tracking-tight transition-transform duration-300 group-hover:translate-x-2 md:text-2xl">
+        <h3 className="text-lg font-semibold tracking-tight transition-transform duration-300 group-hover:translate-x-2 sm:text-xl md:text-2xl">
           {talk.title}
         </h3>
         {talk.url && (
-          <span className="text-[var(--ink-faint)] transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
+          <span className="shrink-0 text-[var(--ink-faint)] transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
             <ArrowUpRightIcon className="h-4 w-4" />
           </span>
         )}
@@ -34,16 +34,13 @@ function TalkRow({ talk }: { talk: (typeof talks)[number] }) {
 
 export default function Talks() {
   return (
-    <section
-      id="talks"
-      className="flex min-h-svh flex-col justify-center overflow-hidden px-5 py-24 sm:px-8"
-    >
-      <div className="mx-auto w-full max-w-[90rem]">
+    <section id="talks" className="section overflow-hidden">
+      <div className="section-inner">
         <ScrollReveal>
-          <p className="mono-label mb-4">
+          <p className="mono-label mb-3 sm:mb-4">
             /On stage — 200+ workshops & talks across NL, Europe and the US
           </p>
-          <h2 className="display mb-16 text-[clamp(2.8rem,7vw,7rem)]">
+          <h2 className="display section-heading text-[clamp(2.5rem,9vw,7rem)]">
             Talks
           </h2>
         </ScrollReveal>

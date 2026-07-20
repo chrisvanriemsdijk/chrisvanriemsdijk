@@ -31,21 +31,86 @@ body {
   overflow-x: hidden;
 }
 
-/* Display type — expanded, heavy, tight */
+/* Display type — expanded, heavy, tight.
+   The width axis is dialled back on narrow screens: expanded faces eat
+   horizontal room that phones don't have, and headings start breaking
+   mid-word before the size clamp ever gets a chance to help. */
 .display {
   font-weight: 800;
-  font-stretch: 110%;
+  font-stretch: 100%;
   text-transform: uppercase;
-  letter-spacing: -0.02em;
-  line-height: 0.92;
+  letter-spacing: -0.03em;
+  line-height: 0.95;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+@media (min-width: 640px) {
+  .display {
+    font-stretch: 110%;
+    letter-spacing: -0.02em;
+    line-height: 0.92;
+    hyphens: manual;
+  }
 }
 
 .mono-label {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.08em;
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--ink-faint);
+  overflow-wrap: break-word;
+}
+
+@media (min-width: 640px) {
+  .mono-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+  }
+}
+
+/* Section rhythm.
+   The full-screen-per-section pacing is the whole point of the design on a
+   desktop, but on a phone it turns every section into a screen of dead space
+   with a heading marooned in the middle. So min-height is a tablet-and-up
+   affordance; below that, sections are sized by their content with generous
+   but finite padding. */
+.section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4.5rem 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .section {
+    padding: 6rem 2rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .section {
+    min-height: 100svh;
+    padding-block: 6rem;
+  }
+}
+
+.section-inner {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 90rem;
+}
+
+/* Heading-to-content gap, tightened on small screens */
+.section-heading {
+  margin-bottom: 2.5rem;
+}
+
+@media (min-width: 768px) {
+  .section-heading {
+    margin-bottom: 4rem;
+  }
 }
 
 .noise-overlay::after {
@@ -70,6 +135,28 @@ body {
 
 html {
   scroll-behavior: smooth;
+  /* iOS bumps font sizes on rotate otherwise, which wrecks the clamped display type */
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Inline links that are comfortable to click with a mouse are too small to
+   tap. Grow them to the 44px guideline on touch devices only — keyed on the
+   input device rather than the viewport, since tablets are wide *and* touch. */
+@media (pointer: coarse) {
+  .touch-target {
+    min-height: 44px;
+  }
+}
+
+/* The fixed palette trigger sits above the home indicator on notched phones */
+.safe-bottom {
+  bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+}
+
+/* Anchored sections must clear the sticky nothing at the top and, more
+   importantly, not land flush against the viewport edge on a phone. */
+[id] {
+  scroll-margin-top: 1.5rem;
 }
 
 @media (prefers-reduced-motion: reduce) {

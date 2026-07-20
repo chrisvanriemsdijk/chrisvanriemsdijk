@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Archivo, IBM_Plex_Mono } from "next/font/google";
 import { siteConfig, aboutText } from "@/lib/constants";
 import "./globals.css";
@@ -61,6 +61,19 @@ export const metadata: Metadata = {
   },
 };
 
+// viewport-fit=cover lets the dark footer and the fixed palette trigger run
+// under the notch/home indicator; the safe-area insets in globals.css keep the
+// content itself out from under them. No maximum-scale — pinch-zoom stays on.
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f1efe9" },
+    { media: "(prefers-color-scheme: dark)", color: "#17150f" },
+  ],
+};
+
 const personSchema = {
   "@context": "https://schema.org",
   "@type": "Person",
@@ -84,7 +97,9 @@ const personSchema = {
     addressLocality: "Groningen",
     addressCountry: "NL",
   },
-  email: `mailto:${siteConfig.email}`,
+  // No `email` property here on purpose. Structured data is machine-readable
+  // by definition, which makes it the single easiest place for a harvester to
+  // lift an address from. Contact runs through the page's own UI instead.
   sameAs: [siteConfig.social.linkedin, siteConfig.social.github],
 };
 

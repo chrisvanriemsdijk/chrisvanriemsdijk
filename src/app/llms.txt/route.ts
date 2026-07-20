@@ -45,7 +45,7 @@ ${experience
   )
   .join("\n")}
 
-Contact: email ${siteConfig.email}
+Contact: via the contact section at ${siteConfig.url}/#contact, or on LinkedIn (${siteConfig.social.linkedin}). The email address is deliberately not published in plain text here.
 
 ## Talks & Workshops
 

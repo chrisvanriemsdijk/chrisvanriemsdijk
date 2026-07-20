@@ -41,10 +41,13 @@ export default function Statement() {
   const words = statement.split(" ");
 
   return (
-    <section ref={ref} className="relative h-[160svh]">
-      <div className="sticky top-0 flex h-svh items-center px-5 sm:px-8">
+    // Shorter scroll runway on phones: the same 160svh of pinning takes
+    // noticeably longer to get through on a touch device, and the sentence is
+    // fully legible well before then.
+    <section ref={ref} className="relative h-[130svh] md:h-[160svh]">
+      <div className="sticky top-0 flex h-svh items-center overflow-y-auto px-5 py-16 sm:px-8">
         <div className="mx-auto max-w-5xl text-center">
-          <p className="text-[clamp(1.4rem,3.4vw,2.8rem)] font-medium leading-snug tracking-tight text-[var(--ink)]">
+          <p className="text-[clamp(1.25rem,5vw,2.8rem)] font-medium leading-snug tracking-tight text-[var(--ink)]">
             {words.map((word, i) => (
               <Word
                 key={i}
