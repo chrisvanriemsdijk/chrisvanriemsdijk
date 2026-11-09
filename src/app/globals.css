@@ -1,183 +1,343 @@
 @import "tailwindcss";
+@import "lenis/dist/lenis.css";
 
+/* Aurora: the whole site takes its palette from React Bits' Grainient
+   "aurora" preset (#05110f, #065f46, #34d399, #ecfccb) that runs behind the
+   hero and the contact block. Near-black green ground, cream type, mint as
+   the one accent. Contrast on --bg: ink about 17:1, ink-2 about 10:1, ink-3
+   about 6:1, so even the quietest text passes AA. Geist throughout. */
 :root {
-  --paper: #f1efe9;
-  --paper-dim: #e9e6de;
-  --ink: #131210;
-  --ink-soft: #57544c;
-  --ink-faint: #8a867c;
-  --panel: #17150f;
-  --panel-soft: #221f18;
-  --paper-on-panel: #efece4;
-  --faint-on-panel: #a8a294;
-  --north: #2b45e0;
-  --hairline: rgba(19, 18, 16, 0.14);
-  --hairline-strong: rgba(19, 18, 16, 0.35);
+  --bg: #05110f;
+  --surface: #0a1b17;
+  --surface-2: #11281f;
+  --ink: #eef6ea;
+  --ink-2: #b4c7bd;
+  --ink-3: #82998e;
+  --line: rgb(236 252 203 / 0.1);
+  --line-strong: rgb(236 252 203 / 0.2);
+  --accent: #34d399;
+  --cream: #ecfccb;
+  --emerald: #065f46;
+  color-scheme: dark;
+  interpolate-size: allow-keywords;
 }
 
 @theme inline {
-  --color-background: var(--paper);
-  --color-foreground: var(--ink);
-  --font-sans: var(--font-archivo), "Helvetica Neue", Arial, sans-serif;
-  --font-mono: var(--font-plex-mono), ui-monospace, Menlo, monospace;
-}
-
-body {
-  background: var(--paper);
-  color: var(--ink);
-  font-family: var(--font-sans);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
-}
-
-/* Display type — expanded, heavy, tight.
-   The width axis is dialled back on narrow screens: expanded faces eat
-   horizontal room that phones don't have, and headings start breaking
-   mid-word before the size clamp ever gets a chance to help. */
-.display {
-  font-weight: 800;
-  font-stretch: 100%;
-  text-transform: uppercase;
-  letter-spacing: -0.03em;
-  line-height: 0.95;
-  overflow-wrap: break-word;
-  hyphens: auto;
-}
-
-@media (min-width: 640px) {
-  .display {
-    font-stretch: 110%;
-    letter-spacing: -0.02em;
-    line-height: 0.92;
-    hyphens: manual;
-  }
-}
-
-.mono-label {
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--ink-faint);
-  overflow-wrap: break-word;
-}
-
-@media (min-width: 640px) {
-  .mono-label {
-    font-size: 0.72rem;
-    letter-spacing: 0.08em;
-  }
-}
-
-/* Section rhythm.
-   The full-screen-per-section pacing is the whole point of the design on a
-   desktop, but on a phone it turns every section into a screen of dead space
-   with a heading marooned in the middle. So min-height is a tablet-and-up
-   affordance; below that, sections are sized by their content with generous
-   but finite padding. */
-.section {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 4.5rem 1.25rem;
-}
-
-@media (min-width: 640px) {
-  .section {
-    padding: 6rem 2rem;
-  }
-}
-
-@media (min-width: 768px) {
-  .section {
-    min-height: 100svh;
-    padding-block: 6rem;
-  }
-}
-
-.section-inner {
-  margin-inline: auto;
-  width: 100%;
-  max-width: 90rem;
-}
-
-/* Heading-to-content gap, tightened on small screens */
-.section-heading {
-  margin-bottom: 2.5rem;
-}
-
-@media (min-width: 768px) {
-  .section-heading {
-    margin-bottom: 4rem;
-  }
-}
-
-.noise-overlay::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background-image: url("/noise.svg");
-  opacity: 0.05;
-  pointer-events: none;
-  z-index: 9999;
-}
-
-::selection {
-  background: rgba(43, 69, 224, 0.18);
-  color: var(--ink);
-}
-
-* {
-  scrollbar-width: thin;
-  scrollbar-color: rgba(19, 18, 16, 0.2) transparent;
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-accent: var(--accent);
+  --color-cream: var(--cream);
+  --color-emerald: var(--emerald);
+  --font-sans: var(--font-geist), "Helvetica Neue", Arial, sans-serif;
 }
 
 html {
-  scroll-behavior: smooth;
-  /* iOS bumps font sizes on rotate otherwise, which wrecks the clamped display type */
   -webkit-text-size-adjust: 100%;
+  background: var(--bg);
 }
 
-/* Inline links that are comfortable to click with a mouse are too small to
-   tap. Grow them to the 44px guideline on touch devices only — keyed on the
-   input device rather than the viewport, since tablets are wide *and* touch. */
-@media (pointer: coarse) {
-  .touch-target {
-    min-height: 44px;
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Film grain over the whole page, so the flat sections share the texture of
+   the Grainient ones. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  pointer-events: none;
+  opacity: 0.07;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.6 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Type */
+.t-display {
+  font-size: clamp(3rem, 8.4vw, 8.75rem);
+  font-weight: 600;
+  line-height: 0.95;
+  letter-spacing: -0.055em;
+  text-wrap: balance;
+}
+
+.t-h2 {
+  font-size: clamp(2.3rem, 5vw, 4.6rem);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.045em;
+  text-wrap: balance;
+}
+
+.t-h3 {
+  font-size: 1.35rem;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+.t-lead {
+  font-size: clamp(1.1rem, 1.45vw, 1.25rem);
+  line-height: 1.6;
+  color: var(--ink-2);
+  text-wrap: pretty;
+}
+
+.t-label {
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--ink-3);
+}
+
+.t-num {
+  font-weight: 600;
+  line-height: 0.9;
+  letter-spacing: -0.06em;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Cream to mint, for the few words that carry the page. */
+.t-glow {
+  background: linear-gradient(100deg, var(--cream) 10%, var(--accent) 60%, #a7f3d0 95%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.wrap {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 84rem;
+  padding-inline: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .wrap {
+    padding-inline: 2rem;
   }
 }
 
-/* The fixed palette trigger sits above the home indicator on notched phones */
-.safe-bottom {
-  bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+.block-y {
+  padding-block: 7rem;
 }
 
-/* Anchored sections must clear the sticky nothing at the top and, more
-   importantly, not land flush against the viewport edge on a phone. */
+@media (min-width: 768px) {
+  .block-y {
+    padding-block: 11rem;
+  }
+}
+
+.panel {
+  border: 1px solid var(--line);
+  border-radius: 1.75rem;
+  background: linear-gradient(180deg, var(--surface-2), var(--surface) 60%);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  min-height: 3.1rem;
+  padding-inline: 1.4rem;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: background-color 250ms, color 250ms, border-color 250ms, box-shadow 400ms;
+}
+
+.btn-sm {
+  min-height: 2.5rem;
+  padding-inline: 1.05rem;
+  font-size: 0.9rem;
+}
+
+.btn-primary {
+  background: var(--cream);
+  color: var(--bg);
+}
+
+.btn-primary:hover {
+  background: #fff;
+  box-shadow: 0 0 0 6px rgb(52 211 153 / 0.18), 0 18px 50px -12px rgb(52 211 153 / 0.55);
+}
+
+.btn-glass {
+  border: 1px solid rgb(236 252 203 / 0.22);
+  background: rgb(5 17 15 / 0.35);
+  color: var(--ink);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.btn-glass:hover {
+  border-color: rgb(236 252 203 / 0.45);
+  background: rgb(5 17 15 / 0.55);
+}
+
+.link {
+  text-decoration: underline;
+  text-decoration-color: var(--line-strong);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
+  transition: text-decoration-color 150ms, color 150ms;
+}
+
+.link:hover {
+  color: var(--accent);
+  text-decoration-color: currentColor;
+}
+
+/* Floating glass nav. The link for the section in view is marked by Motion.tsx. */
+.nav-glass {
+  border: 1px solid var(--line);
+  background: rgb(5 17 15 / 0.82);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  box-shadow: 0 10px 30px -12px rgb(0 0 0 / 0.6);
+}
+
+.nav-link {
+  border-radius: 999px;
+  padding: 0.45rem 0.9rem;
+  font-size: 0.9rem;
+  color: var(--ink-2);
+  transition: color 200ms, background-color 200ms;
+}
+
+.nav-link:hover,
+.nav-link[data-active] {
+  color: var(--ink);
+}
+
+.nav-link[data-active] {
+  background: rgb(236 252 203 / 0.09);
+}
+
+/* Venue marquee: two copies of the list slide by one width, forever. */
+.marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 38s linear infinite;
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* FAQ, opened and closed with height animation where supported. */
+.faq summary {
+  list-style: none;
+  cursor: pointer;
+}
+
+.faq summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq .plus {
+  transition: transform 400ms cubic-bezier(0.2, 0.8, 0.2, 1), background-color 300ms, color 300ms;
+}
+
+.faq[open] .plus {
+  transform: rotate(45deg);
+  background: var(--accent);
+  color: var(--bg);
+}
+
+.faq::details-content {
+  block-size: 0;
+  overflow: clip;
+  transition: block-size 450ms cubic-bezier(0.2, 0.8, 0.2, 1), content-visibility 450ms allow-discrete;
+}
+
+.faq[open]::details-content {
+  block-size: auto;
+}
+
+::selection {
+  background: rgb(52 211 153 / 0.35);
+  color: var(--ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
 [id] {
-  scroll-margin-top: 1.5rem;
+  scroll-margin-top: 6rem;
+}
+
+.skip {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  z-index: 70;
+  padding: 0.6rem 1rem;
+  border-radius: 0.6rem;
+  background: var(--cream);
+  color: var(--bg);
+  font-weight: 600;
+}
+
+.skip:focus {
+  top: 1rem;
+}
+
+/* The hero headline waits for its entrance (Motion.tsx), with a failsafe. */
+@media (prefers-reduced-motion: no-preference) {
+  .js [data-hero] {
+    visibility: hidden;
+    animation: show 0s 4s forwards;
+  }
+}
+
+@keyframes show {
+  to {
+    visibility: visible;
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+}
+
+.rise {
+  animation: rise 1s cubic-bezier(0.2, 0.8, 0.2, 1) both;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
+  .marquee {
+    animation: none;
   }
+
   *,
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
+    animation-delay: 0ms !important;
     transition-duration: 0.01ms !important;
   }
-}
-
-:focus-visible {
-  outline: 2px solid var(--north);
-  outline-offset: 3px;
-}
-
-/* The command palette handles focus with its own borders/highlights */
-.panel-focus :focus-visible {
-  outline: none;
 }

@@ -1,21 +1,15 @@
 import type { Metadata, Viewport } from "next";
-import { Archivo, IBM_Plex_Mono } from "next/font/google";
+import { Geist } from "next/font/google";
+import { Motion } from "@/components/motion/Motion";
 import { siteConfig, aboutText } from "@/lib/constants";
 import "./globals.css";
 
-const archivo = Archivo({
+const geist = Geist({
   subsets: ["latin"],
-  variable: "--font-archivo",
-  axes: ["wdth"],
+  variable: "--font-geist",
 });
 
-const plexMono = IBM_Plex_Mono({
-  subsets: ["latin"],
-  weight: ["400", "500"],
-  variable: "--font-plex-mono",
-});
-
-const title = `${siteConfig.name} — AI Consultant & Speaker`;
+const title = `${siteConfig.name} - AI Expert & Speaker`;
 const description = `${siteConfig.name} is an AI Consultant at DataNorth AI based in ${siteConfig.location}. Strategy, workshops, and hands-on solutions in Computer Vision, NLP, and LLMs.`;
 
 export const metadata: Metadata = {
@@ -23,7 +17,7 @@ export const metadata: Metadata = {
   applicationName: siteConfig.name,
   title: {
     default: title,
-    template: `%s — ${siteConfig.name}`,
+    template: `%s - ${siteConfig.name}`,
   },
   description,
   authors: [{ name: siteConfig.name, url: siteConfig.url }],
@@ -61,18 +55,15 @@ export const metadata: Metadata = {
   },
 };
 
-// viewport-fit=cover lets the dark footer and the fixed palette trigger run
-// under the notch/home indicator; the safe-area insets in globals.css keep the
-// content itself out from under them. No maximum-scale — pinch-zoom stays on.
+// No maximum-scale: pinch-zoom stays on.
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  viewportFit: "cover",
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f1efe9" },
-    { media: "(prefers-color-scheme: dark)", color: "#17150f" },
-  ],
+  themeColor: "#05110f",
 };
+
+// Marks that JS runs, so the hero headline can wait for its entrance.
+const jsScript = `document.documentElement.classList.add('js')`;
 
 const personSchema = {
   "@context": "https://schema.org",
@@ -119,11 +110,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`h-full antialiased ${archivo.variable} ${plexMono.variable}`}
-    >
-      <body className="noise-overlay min-h-full bg-[var(--paper)] text-[var(--ink)]">
+    // suppressHydrationWarning: the inline script adds `js` before React
+    // hydrates, so the hero can wait for its entrance.
+    <html lang="en" className={geist.variable} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: jsScript }} />
+      </head>
+      <body>
+        <Motion />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}

@@ -7,6 +7,7 @@ import {
   principles,
   experience,
   talks,
+  faqs,
 } from "@/lib/constants";
 
 export const dynamic = "force-static";
@@ -24,11 +25,12 @@ ${statement}
 
 Key facts:
 
-${stats.map((s) => `- ${s.value} — ${s.label}`).join("\n")}
+- ${siteConfig.workshopsGiven} workshops and talks given across the Netherlands, Europe and the US
+${stats.map((s) => `- ${s.value}: ${s.label}`).join("\n")}
 
 Services offered:
 
-${services.map((s) => `- ${s.title} (${s.tags.join(", ")})`).join("\n")}
+${services.map((s) => `- ${s.stage}, ${s.title}: ${s.description} (${s.tags.join(", ")})`).join("\n")}
 
 Principles:
 
@@ -46,6 +48,10 @@ ${experience
   .join("\n")}
 
 Contact: via the contact section at ${siteConfig.url}/#contact, or on LinkedIn (${siteConfig.social.linkedin}). The email address is deliberately not published in plain text here.
+
+## FAQ
+
+${faqs.map((f) => `- ${f.q} ${f.a}`).join("\n")}
 
 ## Talks & Workshops
 
